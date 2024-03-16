@@ -1,0 +1,39 @@
+{% extends "core/events.html" %}
+{% load custom_tags %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block events_content %}
+<h4>{{ event.name }}</h4>
+<div class="mt-4">
+  <p>{{ event.description }}</p>
+</div>
+<div id="event-details-container" class="d-flex mt-4 p-4">
+  <div>
+    <i class="bi bi-clock me-2"></i>
+  </div>
+  <div>
+    {{ event.event_date|date:"l, F d" }} at {{ event.event_time }}
+  </div>
+</div>
+<div class="mt-4">
+  <h4>Attendees ({{ event.registrations.count }})</h4>
+</div>
+<div id="attendee-list" class="w-100 p-3 mt-2">
+  {% for registration in event.registrations.all %}
+    <div class="event-attendee card">
+      <div class="card-body">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <img src="https://www.gravatar.com/avatar/{{ registration.user.username|md5 }}?d=retro&s=60" class="rounded-circle me-2" alt="Gravatar">
+          <div class="mt-2">{{ registration.user.first_name }}</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% if registration %}
+    <a href="{% url 'event_unregister' event.id %}" class="btn btn-danger w-100 mt-4">Unregister</a>
+{% else %}
+    <a href="{% url 'event_register' event.id %}" class="btn btn-primary w-100 mt-4">Attend this event</a>
+{% endif %}
+{% endblock %}

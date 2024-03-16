@@ -1,0 +1,23 @@
+.search-result {
+  border-bottom: 1px solid #ccc;
+}
+
+.search-result-inner {
+  display: flex;
+  gap: 1rem;
+}
+
+.event-thumbnail {
+  border-radius: 8px;
+  width: 160px;
+  height: 100px;
+}
+
+.event-date {
+  color: rgb(124, 111, 80);
+  font-weight: 500;
+}
+
+.event-attendees {
+  color: rgb(112, 112, 112);
+}

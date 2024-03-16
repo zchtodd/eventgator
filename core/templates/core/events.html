@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link href="{% static 'core/css/events.css' %}" rel="stylesheet" />
+    <link href="{% static 'core/css/event_search.css' %}" rel="stylesheet" />
+    <link href="{% static 'core/css/event.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div id="events-container" class="h-100">
+        <div id="events-header" class="p-3">
+            <div id="events-header-inner">
+                <div class="d-flex justify-content-between align-items-center">
+                    <form action="{% url 'search' %}"
+                          method="post"
+                          class="d-flex align-items-center"
+                          style="margin: 0">
+                        {% csrf_token %}
+                        <div id="event-search" class="d-flex justify-content-center">
+                            <input id="event-search-input"
+                                   name="q"
+                                   class="p-2"
+                                   type="text"
+                                   placeholder="Search events">
+                            <button id="search-submit-btn" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <a href="{% url 'event_create' %}" class="gator-link">Create an event!</a>
+                        </div>
+                    </form>
+                    <div>
+                        <a href="{% url 'search' %}">
+                            <img id="logo-img"
+                                 src="https://circumeo.io/static/images/gather-gator.png" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="events-content" class="d-flex justify-content-center">
+            <div id="events-content-inner" class="p-4">
+                {% block events_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

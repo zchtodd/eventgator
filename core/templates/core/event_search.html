@@ -1,0 +1,21 @@
+{% extends "core/events.html" %}
+{% load static %}
+{% block events_content %}
+    {% for event in events %}
+        <div class="search-result py-4">
+            <a href="{% url 'event' event_id=event.id %}"
+               class="text-decoration-none text-reset">
+                <div class="search-result-inner">
+                    <div>
+                        {% if event.image_url %}<img class="event-thumbnail" src="{{ event.image_url }}" />{% endif %}
+                    </div>
+                    <div>
+                        <div class="event-date">{{ event.event_date|date:"l, F d" }} {{ event.event_time }}</div>
+                        <div>{{ event.name }}</div>
+                        <div class="event-attendees mt-3">{{ event.registrations.count }} attendee{{ event.registrations.count|pluralize }}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

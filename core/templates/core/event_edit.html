@@ -1,0 +1,62 @@
+{% extends "core/events.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block events_content %}
+{% if event %}
+<h4>Edit event</h4>
+{% else %}
+<h4>Create an event</h4>
+{% endif %}
+<form action="" method="post">
+  {% csrf_token %}
+  {% if form.errors %}
+  <div class="alert alert-danger" role="alert">
+    <strong>There were some problems with your input.</strong>
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    {% for error in field.errors %}<p>{{ error }}</p>{% endfor %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group mt-4">
+        <label for="{{ form.name.id_for_label }}">Title (required)</label>
+        {{ form.name|add_class:"form-control" }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+        <div class="form-group mt-4">
+            <label for="{{ form.date.id_for_label }}">Date</label>
+            {{ form.event_date|add_class:"form-control"|attr:"type:date" }}
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group mt-4">
+            <label for="event_time">Time</label>
+            {{ form.event_time|add_class:"form-control"|attr:"type:time" }}
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group mt-4">
+        <label for="{{ form.image_url.id_for_label }}">Image URL</label>
+        {{ form.image_url|add_class:"form-control" }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group mt-4">
+        <label for="{{ form.description.id_for_label }}">Description</label>
+        {{ form.description|add_class:"form-control"|attr:"rows:5" }}
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary w-100 mt-4" type="submit">Publish</button>
+</form>
+{% endblock %}
