@@ -24,6 +24,7 @@ def event_view(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     user = request.user
     
+    # test 1,2,3
     # try:
     #     event = Event.objects.get(pk=event_id)
     # except Event.DoesNotExist:
