@@ -26,8 +26,8 @@ SECRET_KEY = "django-insecure-dnn-0&sf*@491u=hzvv3==v!=%oxaltvym54g-+(w%$+wdsr5m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["2fn-persevering-geiger.circumeo-apps.net"]
-CSRF_TRUSTED_ORIGINS = ["https://2fn-persevering-geiger.circumeo-apps.net"]
+ALLOWED_HOSTS = ["e0q-prolific-darwin.circumeo-staging-apps.net"]
+CSRF_TRUSTED_ORIGINS = ["https://e0q-prolific-darwin.circumeo-staging-apps.net"]
 
 # Application definition
 
